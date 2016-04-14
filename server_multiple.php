@@ -26,7 +26,12 @@ pcntl_signal(SIGTERM, 'sig_handler');
 pcntl_signal(SIGINT, 'sig_handler'); 
 pcntl_signal(SIGCHLD, 'sig_handler'); 
 
+<<<<<<< Updated upstream
 
+=======
+/* change this to your own host / port */ 
+server_loop("192.168.1.3", 1906); 
+>>>>>>> Stashed changes
 
 /** 
   * Change the identity to a non-priv user 
