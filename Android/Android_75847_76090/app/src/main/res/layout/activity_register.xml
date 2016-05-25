@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="16dp"
+    tools:context="com.example.jose_trabalho.myapplication.RegisterActivity"
+    android:background="#ffffff">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Administrator Fields"
+        android:id="@+id/textView"
+        android:textSize="20sp"
+        android:textColor="#458B00"
+        android:textIsSelectable="false"
+        android:layout_below="@+id/textView5"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="15dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Name and Surname"
+        android:ems="10"
+        android:id="@+id/etName"
+        android:textSize="24sp"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:text=""
+        android:hint="Email Address"
+        android:ems="10"
+        android:id="@+id/etEmail"
+        android:textSize="24sp"
+        android:layout_below="@+id/etName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Device Fields"
+        android:id="@+id/textView2"
+        android:textSize="20sp"
+        android:textColor="#458B00"
+        android:layout_below="@+id/etEmail"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="15dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/etPANid"
+        android:text=""
+        android:hint="Base Station ID"
+        android:textSize="24sp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/etPANsk"
+        android:text=""
+        android:hint="Serial Key"
+        android:textSize="24sp"
+        android:layout_below="@+id/etPANid"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:id="@+id/bRegisterAdmin"
+        android:textSize="24sp"
+        android:background="@drawable/buttonshape"
+        android:textColor="#ffffff"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/tvPANskError"
+        android:layout_alignEnd="@+id/tvPANskError" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="The specified PAN Identifier does not exist."
+        android:id="@+id/tvPANidError"
+        android:visibility="invisible"
+        android:textColor="#FF0000"
+        android:layout_above="@+id/bRegisterAdmin"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="The specified Serial Key does not match the inserted PAN."
+        android:id="@+id/tvPANskError"
+        android:visibility="invisible"
+        android:textColor="#FF0000"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/bRegisterAdmin"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registration"
+        android:id="@+id/textView5"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        android:gravity="center"
+        android:textColor="#458B00"
+        android:textIsSelectable="false"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:src="@drawable/clipboard_with_pencil_"
+        android:layout_toLeftOf="@+id/textView5"
+        android:layout_toStartOf="@+id/textView5"
+        android:layout_alignTop="@+id/textView5"
+        android:layout_alignBottom="@+id/textView5" />
+</RelativeLayout>

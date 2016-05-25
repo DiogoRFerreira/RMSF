@@ -1,0 +1,176 @@
+<html>
+<head>
+<title>MyService.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+.s4 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+MyService.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">com.example.jose_trabalho.myapplication; 
+<a name="l2"><span class="ln">2    </span></a> 
+<a name="l3"><span class="ln">3    </span></a></span><span class="s0">import </span><span class="s1">android.app.NotificationManager; 
+<a name="l4"><span class="ln">4    </span></a></span><span class="s0">import </span><span class="s1">android.app.PendingIntent; 
+<a name="l5"><span class="ln">5    </span></a></span><span class="s0">import </span><span class="s1">android.app.Service; 
+<a name="l6"><span class="ln">6    </span></a></span><span class="s0">import </span><span class="s1">android.content.Context; 
+<a name="l7"><span class="ln">7    </span></a></span><span class="s0">import </span><span class="s1">android.content.Intent; 
+<a name="l8"><span class="ln">8    </span></a></span><span class="s0">import </span><span class="s1">android.media.MediaPlayer; 
+<a name="l9"><span class="ln">9    </span></a></span><span class="s0">import </span><span class="s1">android.os.IBinder; 
+<a name="l10"><span class="ln">10   </span></a></span><span class="s0">import </span><span class="s1">android.os.Vibrator; 
+<a name="l11"><span class="ln">11   </span></a></span><span class="s0">import </span><span class="s1">android.support.annotation.Nullable; 
+<a name="l12"><span class="ln">12   </span></a></span><span class="s0">import </span><span class="s1">android.support.v7.app.NotificationCompat; 
+<a name="l13"><span class="ln">13   </span></a></span><span class="s0">import </span><span class="s1">android.view.WindowManager; 
+<a name="l14"><span class="ln">14   </span></a></span><span class="s0">import </span><span class="s1">android.widget.Toast; 
+<a name="l15"><span class="ln">15   </span></a> 
+<a name="l16"><span class="ln">16   </span></a></span><span class="s0">import </span><span class="s1">java.text.SimpleDateFormat; 
+<a name="l17"><span class="ln">17   </span></a></span><span class="s0">import </span><span class="s1">java.util.Date; 
+<a name="l18"><span class="ln">18   </span></a></span><span class="s0">import </span><span class="s1">java.util.TimeZone; 
+<a name="l19"><span class="ln">19   </span></a></span><span class="s0">import </span><span class="s1">java.util.concurrent.TimeUnit; 
+<a name="l20"><span class="ln">20   </span></a></span><span class="s0">import </span><span class="s1">android.util.Log; 
+<a name="l21"><span class="ln">21   </span></a></span><span class="s0">import </span><span class="s1">android.app.Activity; 
+<a name="l22"><span class="ln">22   </span></a></span><span class="s0">import </span><span class="s1">java.lang.Thread; 
+<a name="l23"><span class="ln">23   </span></a></span><span class="s0">import </span><span class="s1">java.lang.Runnable; 
+<a name="l24"><span class="ln">24   </span></a></span><span class="s0">import </span><span class="s1">android.app.AlertDialog; 
+<a name="l25"><span class="ln">25   </span></a></span><span class="s0">import </span><span class="s1">android.os.Vibrator; 
+<a name="l26"><span class="ln">26   </span></a></span><span class="s0">import </span><span class="s1">android.content.Intent; 
+<a name="l27"><span class="ln">27   </span></a> 
+<a name="l28"><span class="ln">28   </span></a> 
+<a name="l29"><span class="ln">29   </span></a></span><span class="s2">/** 
+<a name="l30"><span class="ln">30   </span></a> * Created by jose_trabalho on 16/04/2016. 
+<a name="l31"><span class="ln">31   </span></a> */</span><span class="s1"> 
+<a name="l32"><span class="ln">32   </span></a></span><span class="s0">public class </span><span class="s1">MyService </span><span class="s0">extends </span><span class="s1">Service{ 
+<a name="l33"><span class="ln">33   </span></a>    </span><span class="s2">// Flag para sair do ciclo de background</span><span class="s1"> 
+<a name="l34"><span class="ln">34   </span></a>    </span><span class="s0">boolean </span><span class="s1">flag = </span><span class="s0">true</span><span class="s1">; 
+<a name="l35"><span class="ln">35   </span></a>    String Email; 
+<a name="l36"><span class="ln">36   </span></a>    String ServerIP; 
+<a name="l37"><span class="ln">37   </span></a>    </span><span class="s0">public static </span><span class="s1">String message; 
+<a name="l38"><span class="ln">38   </span></a> 
+<a name="l39"><span class="ln">39   </span></a>    @Override 
+<a name="l40"><span class="ln">40   </span></a>    </span><span class="s0">public void </span><span class="s1">onCreate() { 
+<a name="l41"><span class="ln">41   </span></a>        </span><span class="s0">super</span><span class="s1">.onCreate(); 
+<a name="l42"><span class="ln">42   </span></a> 
+<a name="l43"><span class="ln">43   </span></a>    } 
+<a name="l44"><span class="ln">44   </span></a> 
+<a name="l45"><span class="ln">45   </span></a>    </span><span class="s0">public final class </span><span class="s1">ThreadClass </span><span class="s0">implements </span><span class="s1">Runnable 
+<a name="l46"><span class="ln">46   </span></a>    { 
+<a name="l47"><span class="ln">47   </span></a>        </span><span class="s0">int </span><span class="s1">service_id; 
+<a name="l48"><span class="ln">48   </span></a> 
+<a name="l49"><span class="ln">49   </span></a>        ThreadClass(</span><span class="s0">int </span><span class="s1">service_id){ 
+<a name="l50"><span class="ln">50   </span></a>            </span><span class="s0">this</span><span class="s1">.service_id = service_id; 
+<a name="l51"><span class="ln">51   </span></a>        } 
+<a name="l52"><span class="ln">52   </span></a> 
+<a name="l53"><span class="ln">53   </span></a>        @Override 
+<a name="l54"><span class="ln">54   </span></a>        </span><span class="s0">public void </span><span class="s1">run() { 
+<a name="l55"><span class="ln">55   </span></a>            flag=</span><span class="s0">true</span><span class="s1">; 
+<a name="l56"><span class="ln">56   </span></a> 
+<a name="l57"><span class="ln">57   </span></a>            </span><span class="s2">//   Utilizado para criar a thread. De outra forma</span><span class="s1"> 
+<a name="l58"><span class="ln">58   </span></a>            </span><span class="s2">//   o servico entraria em conflicto com o uso simultaneo</span><span class="s1"> 
+<a name="l59"><span class="ln">59   </span></a>            </span><span class="s2">//   da aplicacao.</span><span class="s1"> 
+<a name="l60"><span class="ln">60   </span></a>            </span><span class="s0">synchronized </span><span class="s1">(</span><span class="s0">this</span><span class="s1">) { 
+<a name="l61"><span class="ln">61   </span></a>                </span><span class="s0">while</span><span class="s1">(flag){ 
+<a name="l62"><span class="ln">62   </span></a>                    </span><span class="s2">// Inicar o socket</span><span class="s1"> 
+<a name="l63"><span class="ln">63   </span></a>                    <a href="ClientJava.java.html">ClientJava</a> client = </span><span class="s0">new <a href="ClientJava.java.html">ClientJava</a></span><span class="s1">(ServerIP,</span><span class="s0">new <a href="ClientJava.java.html">IPandPORT</a></span><span class="s1">().PHPServer_Port); 
+<a name="l64"><span class="ln">64   </span></a>                    client.send_message(</span><span class="s3">&quot;ANDROID NOTIFICATION &quot;</span><span class="s1">+ Email + </span><span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">&quot;</span><span class="s1">); 
+<a name="l65"><span class="ln">65   </span></a>                     message = client.receive_message(); 
+<a name="l66"><span class="ln">66   </span></a>                    </span><span class="s0">if</span><span class="s1">(message != </span><span class="s0">null</span><span class="s1">) { 
+<a name="l67"><span class="ln">67   </span></a>                        </span><span class="s0">if </span><span class="s1">(message.regionMatches(</span><span class="s4">0</span><span class="s1">, </span><span class="s3">&quot;ALARM&quot;</span><span class="s1">, </span><span class="s4">0</span><span class="s1">, </span><span class="s4">5</span><span class="s1">)) { 
+<a name="l68"><span class="ln">68   </span></a>                            Log.d(</span><span class="s3">&quot;New ALARM at &quot;</span><span class="s1">, message); 
+<a name="l69"><span class="ln">69   </span></a>                            <a href="UserArea.java.html">UserArea</a>.runOnUI(</span><span class="s0">new </span><span class="s1">Runnable() { 
+<a name="l70"><span class="ln">70   </span></a>                                </span><span class="s0">public void </span><span class="s1">run() { 
+<a name="l71"><span class="ln">71   </span></a>                                    Vibrator v = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE); 
+<a name="l72"><span class="ln">72   </span></a>                                    </span><span class="s2">// Vibrate for 500 milliseconds</span><span class="s1"> 
+<a name="l73"><span class="ln">73   </span></a>                                    v.vibrate(</span><span class="s4">3000</span><span class="s1">); 
+<a name="l74"><span class="ln">74   </span></a> 
+<a name="l75"><span class="ln">75   </span></a>                                    NotificationCompat.Builder mBuilder = </span><span class="s0">new </span><span class="s1">NotificationCompat.Builder(getApplicationContext()); 
+<a name="l76"><span class="ln">76   </span></a>                                    mBuilder.setSmallIcon(<a href="R.java.html">R.raw</a>.intruder_alarm_icon); 
+<a name="l77"><span class="ln">77   </span></a>                                    mBuilder.setContentTitle(</span><span class="s3">&quot;Motion detected!&quot;</span><span class="s1">); 
+<a name="l78"><span class="ln">78   </span></a>                                    String[] parts = message.split(</span><span class="s3">&quot;_&quot;</span><span class="s1">); 
+<a name="l79"><span class="ln">79   </span></a> 
+<a name="l80"><span class="ln">80   </span></a>                                    Toast.makeText(getApplicationContext(), </span><span class="s3">&quot;Attention! ALARM at &quot; </span><span class="s1">+ parts[</span><span class="s4">1</span><span class="s1">], Toast.LENGTH_SHORT).show(); 
+<a name="l81"><span class="ln">81   </span></a> 
+<a name="l82"><span class="ln">82   </span></a>                                    mBuilder.setContentText(</span><span class="s3">&quot;At &quot; </span><span class="s1">+ parts[</span><span class="s4">1</span><span class="s1">] + </span><span class="s3">&quot; by Sensor ID &quot; </span><span class="s1">+ parts[</span><span class="s4">2</span><span class="s1">]); 
+<a name="l83"><span class="ln">83   </span></a>                                    Intent resultIntent = </span><span class="s0">new </span><span class="s1">Intent(getApplicationContext(), <a href="MainActivity.java.html">MainActivity</a>.</span><span class="s0">class</span><span class="s1">); 
+<a name="l84"><span class="ln">84   </span></a> 
+<a name="l85"><span class="ln">85   </span></a>                                    PendingIntent resultPendingIntent = 
+<a name="l86"><span class="ln">86   </span></a>                                            PendingIntent.getActivity(getApplicationContext(), </span><span class="s4">0</span><span class="s1">, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT 
+<a name="l87"><span class="ln">87   </span></a>                                            ); 
+<a name="l88"><span class="ln">88   </span></a>                                    mBuilder.setContentIntent(resultPendingIntent); 
+<a name="l89"><span class="ln">89   </span></a>                                    NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE); 
+<a name="l90"><span class="ln">90   </span></a>                                    </span><span class="s0">int </span><span class="s1">notificationID = </span><span class="s4">2</span><span class="s1">; 
+<a name="l91"><span class="ln">91   </span></a>                                    </span><span class="s2">// notificationID allows you to update the notification later on.</span><span class="s1"> 
+<a name="l92"><span class="ln">92   </span></a>                                    mNotificationManager.notify(notificationID, mBuilder.build()); 
+<a name="l93"><span class="ln">93   </span></a>                                    MediaPlayer alarm_sound = </span><span class="s0">new </span><span class="s1">MediaPlayer(); 
+<a name="l94"><span class="ln">94   </span></a>                                    </span><span class="s2">// O som do alarme foi colocado na pasta raw dos recursos</span><span class="s1"> 
+<a name="l95"><span class="ln">95   </span></a>                                    alarm_sound = MediaPlayer.create(getApplicationContext(),<a href="R.java.html">R.raw</a>.alarm_sound); 
+<a name="l96"><span class="ln">96   </span></a>                                    alarm_sound.start(); 
+<a name="l97"><span class="ln">97   </span></a> 
+<a name="l98"><span class="ln">98   </span></a>                                } 
+<a name="l99"><span class="ln">99   </span></a>                            }); 
+<a name="l100"><span class="ln">100  </span></a>                            </span><span class="s2">//Toast.makeText(getApplicationContext(), &quot;\&quot; Attention required! New ALARM at \&quot; + message&quot;, Toast.LENGTH_LONG).show();</span><span class="s1"> 
+<a name="l101"><span class="ln">101  </span></a>                        } </span><span class="s0">else if </span><span class="s1">(message.regionMatches(</span><span class="s4">0</span><span class="s1">, </span><span class="s3">&quot;UPTODATE&quot;</span><span class="s1">, </span><span class="s4">0</span><span class="s1">, </span><span class="s4">8</span><span class="s1">)) { 
+<a name="l102"><span class="ln">102  </span></a>                            Log.d(</span><span class="s3">&quot;No motion detected&quot;</span><span class="s1">, </span><span class="s3">&quot;&quot;</span><span class="s1">); 
+<a name="l103"><span class="ln">103  </span></a>                            </span><span class="s2">//Toast.makeText(getApplicationContext(), &quot;\&quot;No motion detected. Your home is safe!&quot;, Toast.LENGTH_LONG).show();</span><span class="s1"> 
+<a name="l104"><span class="ln">104  </span></a>                        } 
+<a name="l105"><span class="ln">105  </span></a>                    }</span><span class="s0">else </span><span class="s1">{ 
+<a name="l106"><span class="ln">106  </span></a>                        <a href="UserArea.java.html">UserArea</a>.runOnUI(</span><span class="s0">new </span><span class="s1">Runnable() { 
+<a name="l107"><span class="ln">107  </span></a>                            </span><span class="s0">public void </span><span class="s1">run() { 
+<a name="l108"><span class="ln">108  </span></a>                                Toast.makeText(getApplicationContext(), </span><span class="s3">&quot;Couldn't reach server. Closing...&quot;</span><span class="s1">, Toast.LENGTH_SHORT).show(); 
+<a name="l109"><span class="ln">109  </span></a>                            } 
+<a name="l110"><span class="ln">110  </span></a>                        }); 
+<a name="l111"><span class="ln">111  </span></a>                        flag=</span><span class="s0">false</span><span class="s1">; 
+<a name="l112"><span class="ln">112  </span></a>                    } 
+<a name="l113"><span class="ln">113  </span></a>                        </span><span class="s0">try </span><span class="s1">{ 
+<a name="l114"><span class="ln">114  </span></a>                            TimeUnit.SECONDS.sleep(</span><span class="s4">5</span><span class="s1">); 
+<a name="l115"><span class="ln">115  </span></a>                        } </span><span class="s0">catch </span><span class="s1">(InterruptedException e) { 
+<a name="l116"><span class="ln">116  </span></a>                            </span><span class="s2">// TODO Auto-generated catch block</span><span class="s1"> 
+<a name="l117"><span class="ln">117  </span></a>                            e.printStackTrace(); 
+<a name="l118"><span class="ln">118  </span></a>                        } 
+<a name="l119"><span class="ln">119  </span></a> 
+<a name="l120"><span class="ln">120  </span></a>                } 
+<a name="l121"><span class="ln">121  </span></a>                stopSelf(service_id); 
+<a name="l122"><span class="ln">122  </span></a>            } 
+<a name="l123"><span class="ln">123  </span></a>        } 
+<a name="l124"><span class="ln">124  </span></a>    } 
+<a name="l125"><span class="ln">125  </span></a> 
+<a name="l126"><span class="ln">126  </span></a>    </span><span class="s2">// Executa assim que o servico e iniciado</span><span class="s1"> 
+<a name="l127"><span class="ln">127  </span></a>    @Override 
+<a name="l128"><span class="ln">128  </span></a>    </span><span class="s0">public int </span><span class="s1">onStartCommand(Intent intent, </span><span class="s0">int </span><span class="s1">flags, </span><span class="s0">int </span><span class="s1">startId) { 
+<a name="l129"><span class="ln">129  </span></a> 
+<a name="l130"><span class="ln">130  </span></a>        Email = intent.getStringExtra(</span><span class="s3">&quot;Email&quot;</span><span class="s1">); 
+<a name="l131"><span class="ln">131  </span></a>        ServerIP = intent.getStringExtra(</span><span class="s3">&quot;ServerIP&quot;</span><span class="s1">); 
+<a name="l132"><span class="ln">132  </span></a> 
+<a name="l133"><span class="ln">133  </span></a>        Toast.makeText(</span><span class="s0">this</span><span class="s1">, </span><span class="s3">&quot;Started client in BG. Will query &quot; </span><span class="s1">+ ServerIP + </span><span class="s3">&quot; every 5 seconds for new alarms for &quot; </span><span class="s1">+ Email, Toast.LENGTH_LONG).show(); 
+<a name="l134"><span class="ln">134  </span></a>        </span><span class="s2">// Iniciar a thread com o servico de cliente</span><span class="s1"> 
+<a name="l135"><span class="ln">135  </span></a>        Thread thread = </span><span class="s0">new </span><span class="s1">Thread(</span><span class="s0">new </span><span class="s1">ThreadClass(startId)); 
+<a name="l136"><span class="ln">136  </span></a>        thread.start(); 
+<a name="l137"><span class="ln">137  </span></a> 
+<a name="l138"><span class="ln">138  </span></a>        </span><span class="s0">return </span><span class="s1">START_STICKY; 
+<a name="l139"><span class="ln">139  </span></a>    } 
+<a name="l140"><span class="ln">140  </span></a>    </span><span class="s2">// Executa assim que o servico e encerrado</span><span class="s1"> 
+<a name="l141"><span class="ln">141  </span></a>    @Override 
+<a name="l142"><span class="ln">142  </span></a>    </span><span class="s0">public void </span><span class="s1">onDestroy() { </span><span class="s2">// Quando o sistema elimina o servico</span><span class="s1"> 
+<a name="l143"><span class="ln">143  </span></a>        Toast.makeText(</span><span class="s0">this</span><span class="s1">, </span><span class="s3">&quot;Client stopped. You will not be notified anymore.&quot;</span><span class="s1">, Toast.LENGTH_LONG).show(); 
+<a name="l144"><span class="ln">144  </span></a>        flag = </span><span class="s0">false</span><span class="s1">; 
+<a name="l145"><span class="ln">145  </span></a>    } 
+<a name="l146"><span class="ln">146  </span></a> 
+<a name="l147"><span class="ln">147  </span></a> 
+<a name="l148"><span class="ln">148  </span></a>    @Override 
+<a name="l149"><span class="ln">149  </span></a>    </span><span class="s0">public </span><span class="s1">IBinder onBind(Intent intent) { 
+<a name="l150"><span class="ln">150  </span></a>        </span><span class="s0">return null</span><span class="s1">; 
+<a name="l151"><span class="ln">151  </span></a>    } 
+<a name="l152"><span class="ln">152  </span></a>} 
+<a name="l153"><span class="ln">153  </span></a></span></pre>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<html>
+<head>
+<title>UserArea.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(0,128,0); font-weight: bold; }
+.s3 { color: rgb(128,128,128); font-style: italic; }
+.s4 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+UserArea.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">com.example.jose_trabalho.myapplication; 
+<a name="l2"><span class="ln">2    </span></a> 
+<a name="l3"><span class="ln">3    </span></a></span><span class="s0">import </span><span class="s1">android.content.Intent; 
+<a name="l4"><span class="ln">4    </span></a></span><span class="s0">import </span><span class="s1">android.os.Handler; 
+<a name="l5"><span class="ln">5    </span></a></span><span class="s0">import </span><span class="s1">android.os.Looper; 
+<a name="l6"><span class="ln">6    </span></a></span><span class="s0">import </span><span class="s1">android.provider.ContactsContract; 
+<a name="l7"><span class="ln">7    </span></a></span><span class="s0">import </span><span class="s1">android.support.v7.app.AppCompatActivity; 
+<a name="l8"><span class="ln">8    </span></a></span><span class="s0">import </span><span class="s1">android.os.Bundle; 
+<a name="l9"><span class="ln">9    </span></a></span><span class="s0">import </span><span class="s1">android.view.View; 
+<a name="l10"><span class="ln">10   </span></a></span><span class="s0">import </span><span class="s1">android.widget.AdapterView; 
+<a name="l11"><span class="ln">11   </span></a></span><span class="s0">import </span><span class="s1">android.widget.ArrayAdapter; 
+<a name="l12"><span class="ln">12   </span></a></span><span class="s0">import </span><span class="s1">android.widget.Button; 
+<a name="l13"><span class="ln">13   </span></a></span><span class="s0">import </span><span class="s1">android.widget.EditText; 
+<a name="l14"><span class="ln">14   </span></a></span><span class="s0">import </span><span class="s1">android.widget.ListView; 
+<a name="l15"><span class="ln">15   </span></a></span><span class="s0">import </span><span class="s1">android.widget.Toast; 
+<a name="l16"><span class="ln">16   </span></a> 
+<a name="l17"><span class="ln">17   </span></a></span><span class="s0">public class </span><span class="s1">UserArea </span><span class="s0">extends </span><span class="s1">AppCompatActivity { 
+<a name="l18"><span class="ln">18   </span></a>    </span><span class="s0">public static </span><span class="s1">Handler UIHandler; 
+<a name="l19"><span class="ln">19   </span></a>    String ServerIP; 
+<a name="l20"><span class="ln">20   </span></a>    String Email; 
+<a name="l21"><span class="ln">21   </span></a>    String PANid; 
+<a name="l22"><span class="ln">22   </span></a>    </span><span class="s0">static</span><span class="s1"> 
+<a name="l23"><span class="ln">23   </span></a>    { 
+<a name="l24"><span class="ln">24   </span></a>        UIHandler = </span><span class="s0">new </span><span class="s1">Handler(Looper.getMainLooper()); 
+<a name="l25"><span class="ln">25   </span></a>    } 
+<a name="l26"><span class="ln">26   </span></a>    </span><span class="s0">public static void </span><span class="s1">runOnUI(Runnable runnable) { 
+<a name="l27"><span class="ln">27   </span></a>        UIHandler.post(runnable); 
+<a name="l28"><span class="ln">28   </span></a>    } 
+<a name="l29"><span class="ln">29   </span></a>    @Override 
+<a name="l30"><span class="ln">30   </span></a>    </span><span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) { 
+<a name="l31"><span class="ln">31   </span></a>        </span><span class="s0">super</span><span class="s1">.onCreate(savedInstanceState); 
+<a name="l32"><span class="ln">32   </span></a>        setContentView(<a href="R.java.html">R.layout</a>.activity_user_area); 
+<a name="l33"><span class="ln">33   </span></a> 
+<a name="l34"><span class="ln">34   </span></a>        Bundle extras = getIntent().getExtras(); 
+<a name="l35"><span class="ln">35   </span></a>        </span><span class="s0">if </span><span class="s1">(extras != </span><span class="s0">null</span><span class="s1">) { 
+<a name="l36"><span class="ln">36   </span></a>            ServerIP = extras.getString(</span><span class="s2">&quot;ServerIP&quot;</span><span class="s1">); 
+<a name="l37"><span class="ln">37   </span></a>            Email = extras.getString(</span><span class="s2">&quot;Email&quot;</span><span class="s1">); 
+<a name="l38"><span class="ln">38   </span></a>            PANid = extras.getString(</span><span class="s2">&quot;PANid&quot;</span><span class="s1">); 
+<a name="l39"><span class="ln">39   </span></a>        } 
+<a name="l40"><span class="ln">40   </span></a> 
+<a name="l41"><span class="ln">41   </span></a>        </span><span class="s3">//Login Fields</span><span class="s1"> 
+<a name="l42"><span class="ln">42   </span></a>        </span><span class="s0">final </span><span class="s1">EditText etEmail = (EditText) findViewById(<a href="R.java.html">R.id</a>.etEmail); 
+<a name="l43"><span class="ln">43   </span></a>        </span><span class="s0">final </span><span class="s1">EditText etPassword = (EditText) findViewById(<a href="R.java.html">R.id</a>.etPassword); 
+<a name="l44"><span class="ln">44   </span></a> 
+<a name="l45"><span class="ln">45   </span></a> 
+<a name="l46"><span class="ln">46   </span></a> 
+<a name="l47"><span class="ln">47   </span></a>        String[] sActivities = </span><span class="s0">new </span><span class="s1">String[]{</span><span class="s2">&quot;Settings&quot;</span><span class="s1">, </span><span class="s2">&quot;Records&quot;</span><span class="s1">}; 
+<a name="l48"><span class="ln">48   </span></a> 
+<a name="l49"><span class="ln">49   </span></a>        ArrayAdapter&lt;String&gt; adapterAct = </span><span class="s0">new </span><span class="s1">ArrayAdapter&lt;String&gt;(</span><span class="s0">this</span><span class="s1">, <a href="R.java.html">R.layout</a>.listview, sActivities); 
+<a name="l50"><span class="ln">50   </span></a>        ListView lvActivities = (ListView) findViewById(<a href="R.java.html">R.id</a>.lvActivities); 
+<a name="l51"><span class="ln">51   </span></a>        lvActivities.setAdapter(adapterAct); 
+<a name="l52"><span class="ln">52   </span></a>        lvActivities.setOnItemClickListener(GoToActivities()); 
+<a name="l53"><span class="ln">53   </span></a> 
+<a name="l54"><span class="ln">54   </span></a>    } 
+<a name="l55"><span class="ln">55   </span></a>    </span><span class="s0">public </span><span class="s1">AdapterView.OnItemClickListener GoToActivities(){ 
+<a name="l56"><span class="ln">56   </span></a>        </span><span class="s0">return</span><span class="s1">(</span><span class="s0">new </span><span class="s1">AdapterView.OnItemClickListener() { 
+<a name="l57"><span class="ln">57   </span></a>            @Override 
+<a name="l58"><span class="ln">58   </span></a>            </span><span class="s0">public void </span><span class="s1">onItemClick(AdapterView&lt;?&gt; parent, View view, </span><span class="s0">int </span><span class="s1">position, </span><span class="s0">long </span><span class="s1">id) { 
+<a name="l59"><span class="ln">59   </span></a>                Intent intent; 
+<a name="l60"><span class="ln">60   </span></a> 
+<a name="l61"><span class="ln">61   </span></a>                </span><span class="s0">switch </span><span class="s1">(position) { 
+<a name="l62"><span class="ln">62   </span></a>                    </span><span class="s0">case </span><span class="s4">0</span><span class="s1">: 
+<a name="l63"><span class="ln">63   </span></a>                       intent = </span><span class="s0">new </span><span class="s1">Intent(UserArea.</span><span class="s0">this</span><span class="s1">, <a href="Settings.java.html">Settings</a>.</span><span class="s0">class</span><span class="s1">); 
+<a name="l64"><span class="ln">64   </span></a>                        intent.putExtra(</span><span class="s2">&quot;ServerIP&quot;</span><span class="s1">,ServerIP); 
+<a name="l65"><span class="ln">65   </span></a>                        intent.putExtra(</span><span class="s2">&quot;PANid&quot;</span><span class="s1">,PANid); 
+<a name="l66"><span class="ln">66   </span></a>                        startActivity(intent); 
+<a name="l67"><span class="ln">67   </span></a>                        </span><span class="s0">break</span><span class="s1">; 
+<a name="l68"><span class="ln">68   </span></a>                    </span><span class="s0">case </span><span class="s4">1</span><span class="s1">: 
+<a name="l69"><span class="ln">69   </span></a>                        intent = </span><span class="s0">new </span><span class="s1">Intent(UserArea.</span><span class="s0">this</span><span class="s1">, <a href="Records.java.html">Records</a>.</span><span class="s0">class</span><span class="s1">); 
+<a name="l70"><span class="ln">70   </span></a>                        intent.putExtra(</span><span class="s2">&quot;ServerIP&quot;</span><span class="s1">,ServerIP); 
+<a name="l71"><span class="ln">71   </span></a>                        intent.putExtra(</span><span class="s2">&quot;PANid&quot;</span><span class="s1">,PANid); 
+<a name="l72"><span class="ln">72   </span></a>                        startActivity(intent); 
+<a name="l73"><span class="ln">73   </span></a>                        </span><span class="s0">break</span><span class="s1">; 
+<a name="l74"><span class="ln">74   </span></a> 
+<a name="l75"><span class="ln">75   </span></a> 
+<a name="l76"><span class="ln">76   </span></a>                } 
+<a name="l77"><span class="ln">77   </span></a>            } 
+<a name="l78"><span class="ln">78   </span></a>        }); 
+<a name="l79"><span class="ln">79   </span></a>    } 
+<a name="l80"><span class="ln">80   </span></a> 
+<a name="l81"><span class="ln">81   </span></a>    </span><span class="s0">public void </span><span class="s1">startService(View view) 
+<a name="l82"><span class="ln">82   </span></a>    { 
+<a name="l83"><span class="ln">83   </span></a>        Intent intent =  </span><span class="s0">new </span><span class="s1">Intent(</span><span class="s0">this</span><span class="s1">,<a href="MyService.java.html">MyService</a>.</span><span class="s0">class</span><span class="s1">); 
+<a name="l84"><span class="ln">84   </span></a>        intent.putExtra(</span><span class="s2">&quot;Email&quot;</span><span class="s1">, Email); 
+<a name="l85"><span class="ln">85   </span></a>        intent.putExtra(</span><span class="s2">&quot;ServerIP&quot;</span><span class="s1">, ServerIP); 
+<a name="l86"><span class="ln">86   </span></a>        startService(intent); 
+<a name="l87"><span class="ln">87   </span></a>    } 
+<a name="l88"><span class="ln">88   </span></a> 
+<a name="l89"><span class="ln">89   </span></a>    </span><span class="s0">public void </span><span class="s1">stopService(View view) { 
+<a name="l90"><span class="ln">90   </span></a>        Intent intent =  </span><span class="s0">new </span><span class="s1">Intent(</span><span class="s0">this</span><span class="s1">,<a href="MyService.java.html">MyService</a>.</span><span class="s0">class</span><span class="s1">); 
+<a name="l91"><span class="ln">91   </span></a>        stopService(intent); 
+<a name="l92"><span class="ln">92   </span></a>    } 
+<a name="l93"><span class="ln">93   </span></a>} 
+<a name="l94"><span class="ln">94   </span></a></span></pre>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>build.gradle</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { }
+.s1 { color: rgb(0,128,0); font-weight: bold; }
+.s2 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+build.gradle</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<a name="l1"><span class="ln">1    </span></a><span class="s0">apply plugin: </span><span class="s1">'com.android.application'</span><span class="s0"> 
+<a name="l2"><span class="ln">2    </span></a> 
+<a name="l3"><span class="ln">3    </span></a>android { 
+<a name="l4"><span class="ln">4    </span></a>    compileSdkVersion </span><span class="s2">23</span><span class="s0"> 
+<a name="l5"><span class="ln">5    </span></a>    buildToolsVersion </span><span class="s1">&quot;23.0.2&quot;</span><span class="s0"> 
+<a name="l6"><span class="ln">6    </span></a> 
+<a name="l7"><span class="ln">7    </span></a>    defaultConfig { 
+<a name="l8"><span class="ln">8    </span></a>        applicationId </span><span class="s1">&quot;com.example.jose_trabalho.myapplication&quot;</span><span class="s0"> 
+<a name="l9"><span class="ln">9    </span></a>        minSdkVersion </span><span class="s2">15</span><span class="s0"> 
+<a name="l10"><span class="ln">10   </span></a>        targetSdkVersion </span><span class="s2">23</span><span class="s0"> 
+<a name="l11"><span class="ln">11   </span></a>        versionCode </span><span class="s2">1</span><span class="s0"> 
+<a name="l12"><span class="ln">12   </span></a>        versionName </span><span class="s1">&quot;1.0&quot;</span><span class="s0"> 
+<a name="l13"><span class="ln">13   </span></a>    } 
+<a name="l14"><span class="ln">14   </span></a>    buildTypes { 
+<a name="l15"><span class="ln">15   </span></a>        release { 
+<a name="l16"><span class="ln">16   </span></a>            minifyEnabled false 
+<a name="l17"><span class="ln">17   </span></a>            proguardFiles getDefaultProguardFile(</span><span class="s1">'proguard-android.txt'</span><span class="s0">), </span><span class="s1">'proguard-rules.pro'</span><span class="s0"> 
+<a name="l18"><span class="ln">18   </span></a>        } 
+<a name="l19"><span class="ln">19   </span></a>    } 
+<a name="l20"><span class="ln">20   </span></a>} 
+<a name="l21"><span class="ln">21   </span></a> 
+<a name="l22"><span class="ln">22   </span></a>dependencies { 
+<a name="l23"><span class="ln">23   </span></a>    compile fileTree(include: [</span><span class="s1">'*.jar'</span><span class="s0">], dir: </span><span class="s1">'libs'</span><span class="s0">) 
+<a name="l24"><span class="ln">24   </span></a>    testCompile </span><span class="s1">'junit:junit:4.12'</span><span class="s0"> 
+<a name="l25"><span class="ln">25   </span></a>    compile </span><span class="s1">&quot;com.android.support:appcompat-v7:23.2.1&quot;</span><span class="s0"> 
+<a name="l26"><span class="ln">26   </span></a> 
+<a name="l27"><span class="ln">27   </span></a>    compile </span><span class="s1">'com.google.android.gms:play-services-appindexing:8.1.0'</span><span class="s0"> 
+<a name="l28"><span class="ln">28   </span></a>} 
+<a name="l29"><span class="ln">29   </span></a></span></pre>
+</body>
+</html>

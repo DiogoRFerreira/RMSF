@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>apptheme_item_background_holo_light.xml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { font-style: italic; }
+.s1 { color: rgb(0,0,255); font-weight: bold; }
+.s2 { }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+.s4 { color: rgb(128,128,128); font-style: italic; }
+.s5 { color: rgb(0,0,128); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+apptheme_item_background_holo_light.xml</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<a name="l1"><span class="ln">1    </span></a><span class="s0">&lt;?</span><span class="s1">xml version=</span><span class="s3">&quot;1.0&quot; </span><span class="s1">encoding=</span><span class="s3">&quot;utf-8&quot;</span><span class="s0">?&gt;</span><span class="s2"> 
+<a name="l2"><span class="ln">2    </span></a></span><span class="s4">&lt;!-- Copyright (C) 2010 The Android Open Source Project 
+<a name="l3"><span class="ln">3    </span></a> 
+<a name="l4"><span class="ln">4    </span></a>     Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); 
+<a name="l5"><span class="ln">5    </span></a>     you may not use this file except in compliance with the License. 
+<a name="l6"><span class="ln">6    </span></a>     You may obtain a copy of the License at 
+<a name="l7"><span class="ln">7    </span></a> 
+<a name="l8"><span class="ln">8    </span></a>          http://www.apache.org/licenses/LICENSE-2.0 
+<a name="l9"><span class="ln">9    </span></a> 
+<a name="l10"><span class="ln">10   </span></a>     Unless required by applicable law or agreed to in writing, software 
+<a name="l11"><span class="ln">11   </span></a>     distributed under the License is distributed on an &quot;AS IS&quot; BASIS, 
+<a name="l12"><span class="ln">12   </span></a>     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+<a name="l13"><span class="ln">13   </span></a>     See the License for the specific language governing permissions and 
+<a name="l14"><span class="ln">14   </span></a>     limitations under the License. 
+<a name="l15"><span class="ln">15   </span></a>--&gt;</span><span class="s2"> 
+<a name="l16"><span class="ln">16   </span></a> 
+<a name="l17"><span class="ln">17   </span></a>&lt;</span><span class="s5">selector </span><span class="s1">xmlns:android=</span><span class="s3">&quot;http://schemas.android.com/apk/res/android&quot;</span><span class="s2">&gt; 
+<a name="l18"><span class="ln">18   </span></a> 
+<a name="l19"><span class="ln">19   </span></a>    </span><span class="s4">&lt;!-- Even though these two point to the same resource, have two states so the drawable will invalidate itself when coming out of pressed state. --&gt;</span><span class="s2"> 
+<a name="l20"><span class="ln">20   </span></a>    &lt;</span><span class="s5">item </span><span class="s1">android:state_focused=</span><span class="s3">&quot;true&quot;  </span><span class="s1">android:state_enabled=</span><span class="s3">&quot;false&quot; </span><span class="s1">android:state_pressed=</span><span class="s3">&quot;true&quot; </span><span class="s1">android:drawable=</span><span class="s3">&quot;@drawable/apptheme_list_selector_disabled_holo_light&quot; </span><span class="s2">/&gt; 
+<a name="l21"><span class="ln">21   </span></a>    &lt;</span><span class="s5">item </span><span class="s1">android:state_focused=</span><span class="s3">&quot;true&quot;  </span><span class="s1">android:state_enabled=</span><span class="s3">&quot;false&quot;                              </span><span class="s1">android:drawable=</span><span class="s3">&quot;@drawable/apptheme_list_selector_disabled_holo_light&quot; </span><span class="s2">/&gt; 
+<a name="l22"><span class="ln">22   </span></a>    &lt;</span><span class="s5">item </span><span class="s1">android:state_focused=</span><span class="s3">&quot;true&quot;                                </span><span class="s1">android:state_pressed=</span><span class="s3">&quot;true&quot; </span><span class="s1">android:drawable=</span><span class="s3">&quot;@drawable/apptheme_list_selector_background_transition_holo_light&quot; </span><span class="s2">/&gt; 
+<a name="l23"><span class="ln">23   </span></a>    &lt;</span><span class="s5">item </span><span class="s1">android:state_focused=</span><span class="s3">&quot;false&quot;                               </span><span class="s1">android:state_pressed=</span><span class="s3">&quot;true&quot; </span><span class="s1">android:drawable=</span><span class="s3">&quot;@drawable/apptheme_list_selector_background_transition_holo_light&quot; </span><span class="s2">/&gt; 
+<a name="l24"><span class="ln">24   </span></a>    &lt;</span><span class="s5">item </span><span class="s1">android:state_focused=</span><span class="s3">&quot;true&quot;                                                             </span><span class="s1">android:drawable=</span><span class="s3">&quot;@drawable/apptheme_list_focused_holo&quot; </span><span class="s2">/&gt; 
+<a name="l25"><span class="ln">25   </span></a>    &lt;</span><span class="s5">item                                                                                          </span><span class="s1">android:drawable=</span><span class="s3">&quot;@android:color/transparent&quot; </span><span class="s2">/&gt; 
+<a name="l26"><span class="ln">26   </span></a>&lt;/</span><span class="s5">selector</span><span class="s2">&gt; 
+<a name="l27"><span class="ln">27   </span></a></span></pre>
+</body>
+</html>

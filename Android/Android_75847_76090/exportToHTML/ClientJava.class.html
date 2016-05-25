@@ -1,0 +1,83 @@
+<html>
+<head>
+<title>ClientJava.class</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(128,128,128); font-style: italic; }
+.s1 { }
+.s2 { color: rgb(0,0,128); font-weight: bold; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+ClientJava.class</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<a name="l1"><span class="ln">1    </span></a><span class="s0">//</span><span class="s1"> 
+<a name="l2"><span class="ln">2    </span></a></span><span class="s0">// Source code recreated from a .class file by IntelliJ IDEA</span><span class="s1"> 
+<a name="l3"><span class="ln">3    </span></a></span><span class="s0">// (powered by Fernflower decompiler)</span><span class="s1"> 
+<a name="l4"><span class="ln">4    </span></a></span><span class="s0">//</span><span class="s1"> 
+<a name="l5"><span class="ln">5    </span></a> 
+<a name="l6"><span class="ln">6    </span></a></span><span class="s2">package </span><span class="s1">com.example.jose_trabalho.myapplication; 
+<a name="l7"><span class="ln">7    </span></a> 
+<a name="l8"><span class="ln">8    </span></a></span><span class="s2">import </span><span class="s1">java.io.BufferedReader; 
+<a name="l9"><span class="ln">9    </span></a></span><span class="s2">import </span><span class="s1">java.io.DataOutputStream; 
+<a name="l10"><span class="ln">10   </span></a></span><span class="s2">import </span><span class="s1">java.io.IOException; 
+<a name="l11"><span class="ln">11   </span></a></span><span class="s2">import </span><span class="s1">java.io.InputStreamReader; 
+<a name="l12"><span class="ln">12   </span></a></span><span class="s2">import </span><span class="s1">java.net.Socket; 
+<a name="l13"><span class="ln">13   </span></a></span><span class="s2">import </span><span class="s1">java.net.UnknownHostException; 
+<a name="l14"><span class="ln">14   </span></a> 
+<a name="l15"><span class="ln">15   </span></a></span><span class="s2">public class </span><span class="s1">ClientJava { 
+<a name="l16"><span class="ln">16   </span></a>    </span><span class="s2">private </span><span class="s1">Socket socket; 
+<a name="l17"><span class="ln">17   </span></a> 
+<a name="l18"><span class="ln">18   </span></a>    </span><span class="s2">public </span><span class="s1">ClientJava(String server, </span><span class="s2">int </span><span class="s1">port) { 
+<a name="l19"><span class="ln">19   </span></a>        </span><span class="s2">try </span><span class="s1">{ 
+<a name="l20"><span class="ln">20   </span></a>            </span><span class="s2">this</span><span class="s1">.socket = </span><span class="s2">new </span><span class="s1">Socket(server, port); 
+<a name="l21"><span class="ln">21   </span></a>        } </span><span class="s2">catch </span><span class="s1">(UnknownHostException var4) { 
+<a name="l22"><span class="ln">22   </span></a>            var4.printStackTrace(); 
+<a name="l23"><span class="ln">23   </span></a>        } </span><span class="s2">catch </span><span class="s1">(IOException var5) { 
+<a name="l24"><span class="ln">24   </span></a>            var5.printStackTrace(); 
+<a name="l25"><span class="ln">25   </span></a>        } 
+<a name="l26"><span class="ln">26   </span></a> 
+<a name="l27"><span class="ln">27   </span></a>    } 
+<a name="l28"><span class="ln">28   </span></a> 
+<a name="l29"><span class="ln">29   </span></a>    </span><span class="s2">public void </span><span class="s1">send_message(String message) { 
+<a name="l30"><span class="ln">30   </span></a>        </span><span class="s2">try </span><span class="s1">{ 
+<a name="l31"><span class="ln">31   </span></a>            DataOutputStream os = </span><span class="s2">new </span><span class="s1">DataOutputStream(</span><span class="s2">this</span><span class="s1">.socket.getOutputStream()); 
+<a name="l32"><span class="ln">32   </span></a>            os.writeBytes(message); 
+<a name="l33"><span class="ln">33   </span></a>            os.flush(); 
+<a name="l34"><span class="ln">34   </span></a>        } </span><span class="s2">catch </span><span class="s1">(IOException var4) { 
+<a name="l35"><span class="ln">35   </span></a>            System.out.println(</span><span class="s3">&quot;Can´t send the message&quot;</span><span class="s1">); 
+<a name="l36"><span class="ln">36   </span></a>            var4.printStackTrace(); 
+<a name="l37"><span class="ln">37   </span></a>        } 
+<a name="l38"><span class="ln">38   </span></a> 
+<a name="l39"><span class="ln">39   </span></a>    } 
+<a name="l40"><span class="ln">40   </span></a> 
+<a name="l41"><span class="ln">41   </span></a>    </span><span class="s2">public </span><span class="s1">String receive_message() { 
+<a name="l42"><span class="ln">42   </span></a>        String message = </span><span class="s2">null</span><span class="s1">; 
+<a name="l43"><span class="ln">43   </span></a>        </span><span class="s2">new </span><span class="s1">Object(); 
+<a name="l44"><span class="ln">44   </span></a> 
+<a name="l45"><span class="ln">45   </span></a>        </span><span class="s2">try </span><span class="s1">{ 
+<a name="l46"><span class="ln">46   </span></a>            InputStreamReader inputStream = </span><span class="s2">new </span><span class="s1">InputStreamReader(</span><span class="s2">this</span><span class="s1">.socket.getInputStream()); 
+<a name="l47"><span class="ln">47   </span></a>            BufferedReader e = </span><span class="s2">new </span><span class="s1">BufferedReader(inputStream); 
+<a name="l48"><span class="ln">48   </span></a>            message = e.readLine(); 
+<a name="l49"><span class="ln">49   </span></a>        } </span><span class="s2">catch </span><span class="s1">(IOException var5) { 
+<a name="l50"><span class="ln">50   </span></a>            System.out.println(</span><span class="s3">&quot;Can´t receive the message&quot;</span><span class="s1">); 
+<a name="l51"><span class="ln">51   </span></a>            var5.printStackTrace(); 
+<a name="l52"><span class="ln">52   </span></a>        } 
+<a name="l53"><span class="ln">53   </span></a> 
+<a name="l54"><span class="ln">54   </span></a>        </span><span class="s2">return </span><span class="s1">message; 
+<a name="l55"><span class="ln">55   </span></a>    } 
+<a name="l56"><span class="ln">56   </span></a> 
+<a name="l57"><span class="ln">57   </span></a>    </span><span class="s2">public void </span><span class="s1">Close() </span><span class="s2">throws </span><span class="s1">IOException { 
+<a name="l58"><span class="ln">58   </span></a>        </span><span class="s2">this</span><span class="s1">.socket.close(); 
+<a name="l59"><span class="ln">59   </span></a>    } 
+<a name="l60"><span class="ln">60   </span></a>} 
+<a name="l61"><span class="ln">61   </span></a></span></pre>
+</body>
+</html>
